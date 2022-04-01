@@ -6,7 +6,7 @@ import (
 )
 
 type MqttMsg struct {
-	LOGICHANDLER   string
+	PUBLISHTOPIC   string
 	MSGTYPE        string
 	PUBER          string
 	SUBER          []string
@@ -17,7 +17,7 @@ type MqttMsg struct {
 }
 
 var DefaultMqttMsg = MqttMsg{
-	LOGICHANDLER:   "EMPTY",
+	PUBLISHTOPIC:   "EMPTY",
 	MSGTYPE:        "EMPTY",
 	PUBER:          "EMPTY",
 	SUBER:          []string{"EMPTY"},
