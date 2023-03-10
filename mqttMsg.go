@@ -3,6 +3,7 @@ package escapeRoomDataTypes
 import (
 	"encoding/json"
 	"fmt"
+	"sync"
 )
 
 type MqttMsg struct {
@@ -36,4 +37,16 @@ func PayloadToMqttMsg(inputPayload []byte) (MqttMsg, int) {
 	}
 	return MqttMsgReturn, 1
 
+}
+
+func (m *MqttMsg) ToPayload() ([]byte, error) {
+	result, err := json.Marshal(m)
+	return result, err
+}
+
+func (m *MqttMsg) ToMessage() Message {
+	return Message{
+		message: *m,
+		once:    sync.Once{},
+	}
 }
